@@ -7,6 +7,15 @@ function App() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [feedback, setFeedback] = useState("");
+  const [todos, setTodos] = useState([]);
+  const [input, setInput] = useState("");
+
+  function addTodo() {
+    if (!input) return;
+
+    setTodos([...todos, input]);
+    setInput("");
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -55,7 +64,23 @@ function App() {
       </form>
 
       <p>{feedback}</p>
+
+      <h1>React Todo List</h1>
+      <input 
+        value={input}
+        placeholder='New task'
+        onChange={(e) => setInput(e.target.value)}
+        />
+        <button onClick={addTodo}>Add</button>
+
+        <ul>
+          {todos.map((todo, index) => (
+            <li key={index}>{todo}</li>
+          ))}
+        </ul>
     </div>
+
+    
   );
 }
 
