@@ -1,6 +1,7 @@
 import './App.css';
 
 import { useState } from "react";
+import Profile from './Profile';
 
 function App() {
   const [name, setName] = useState("");
@@ -15,6 +16,10 @@ function App() {
 
     setTodos([...todos, input]);
     setInput("");
+  }
+  function deleteTodo(index) {
+    const newTodos = todos.filter((_, i) => i !== index);
+    setTodos(newTodos);
   }
 
   function handleSubmit(e) {
@@ -34,6 +39,26 @@ function App() {
 
   return (
     <div>
+      <h1>My Portfolio</h1>
+      <Profile name="Sovanna Ra" role="Frontend Developer" />
+      <Profile name="My Goal" role="To become a full stack developer and work on exciting projects!" />
+      <hr />
+      <h1>React Todo List</h1>
+      <input 
+        value={input}
+        placeholder='New task'
+        onChange={(e) => setInput(e.target.value)}
+        />
+        <button onClick={addTodo}>Add</button>
+
+        <ul>
+          {todos.map((todo, index) => (
+            <li key={index}
+            >{todo}
+              <button onClick={() => deleteTodo(index)}>❌</button>
+            </li>
+          ))}
+        </ul>
       <h1>Contact Me</h1>
 
       <form onSubmit={handleSubmit}>
@@ -65,19 +90,7 @@ function App() {
 
       <p>{feedback}</p>
 
-      <h1>React Todo List</h1>
-      <input 
-        value={input}
-        placeholder='New task'
-        onChange={(e) => setInput(e.target.value)}
-        />
-        <button onClick={addTodo}>Add</button>
-
-        <ul>
-          {todos.map((todo, index) => (
-            <li key={index}>{todo}</li>
-          ))}
-        </ul>
+      
     </div>
 
     
