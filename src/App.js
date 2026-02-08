@@ -1,11 +1,13 @@
-
 import './App.css';
+import Profile from './Profile';
 
 function App() {
   return (
     <div>
-      <h1>Hello, I am Sovanna Ra </h1>
-      <p>I am learning React and Frontend Development 🚀</p>
+      <h1>My React Portfolio</h1>
+
+      <Profile name="Sovanna Ra" role="Frontend Developer Student" />
+      <Profile name="Learning Goal" role="React, Frontend Development" />
     </div>
   )
 }
