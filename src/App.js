@@ -1,24 +1,62 @@
 import './App.css';
 
-import { useState } from 'react';
+import { useState } from "react";
 
 function App() {
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [feedback, setFeedback] = useState("");
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    if (!name || !email || !message) {
+      setFeedback("Please fill in all fields ❌");
+      return;
+    }
+
+    setFeedback("Message sent successfully ✅");
+
+    setName("");
+    setEmail("");
+    setMessage("");
+  }
 
   return (
     <div>
-      <h1>Contact Form</h1>
+      <h1>Contact Me</h1>
 
-      <input 
-        type='text'
-        value={name}
-        placeholder='Your name'
-        onChange={(e) => setName(e.target.value)}
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Your name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
-        <button onClick={() => alert("Submitted!")}>Submit</button>
-      <p>Hello {name}</p>
+        <br /><br />
+
+        <input
+          type="email"
+          placeholder="Your email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <br /><br />
+
+        <textarea
+          placeholder="Your message"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+        />
+        <br /><br />
+
+        <button>Send</button>
+      </form>
+
+      <p>{feedback}</p>
     </div>
-  )
+  );
 }
 
 export default App;
