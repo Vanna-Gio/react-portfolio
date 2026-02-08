@@ -1,21 +1,22 @@
 import './App.css';
-import Profile from './Profile';
+
 import { useState } from 'react';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [name, setName] = useState("");
 
   return (
     <div>
-      <h1>React Counter</h1>
-      <p>Count: {count}</p>
+      <h1>Contact Form</h1>
 
-      <button onClick={() => setCount(count + 1)}>Increment</button>
-      <button onClick={() => setCount(count - 1)}>Decrement</button>
-
-      <h1>Profile Information</h1>
-      <Profile name="Sovanna Ra" role="Frontend Developer Student" />
-      <Profile name="Learning Goal" role="React, Frontend Development" />
+      <input 
+        type='text'
+        value={name}
+        placeholder='Your name'
+        onChange={(e) => setName(e.target.value)}
+        />
+        <button onClick={() => alert("Submitted!")}>Submit</button>
+      <p>Hello {name}</p>
     </div>
   )
 }
